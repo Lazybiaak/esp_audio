@@ -23,7 +23,7 @@ static void download_task(void *pvParameters)
 
 
     esp_err_t err = downloader_download_file(
-        "https://raw.githubusercontent.com/Lazybiaak/portfolio/main/img/hello.wav",
+        "https://raw.githubusercontent.com/Lazybiaak/esp_audio/main/hello.wav",
         "/storage/hello.wav"
     );
 
