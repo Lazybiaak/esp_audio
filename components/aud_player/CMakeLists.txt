@@ -7,4 +7,5 @@ idf_component_register(
 
     REQUIRES
         esp_driver_dac
+        esp_partition
 )

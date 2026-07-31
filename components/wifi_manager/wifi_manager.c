@@ -31,14 +31,21 @@ static void wifi_event_handler(
             break;
 
         case WIFI_EVENT_STA_DISCONNECTED:
-
+        {
             wifi_connected = false;
 
-            ESP_LOGW(TAG, "Disconnected. Reconnecting...");
+            wifi_event_sta_disconnected_t *d =
+                (wifi_event_sta_disconnected_t *)event_data;
+
+            // reason codes: 201 = AP not found (wrong SSID or 5 GHz),
+            // 15 = handshake timeout (wrong password), 2/4 = auth expire, ...
+            ESP_LOGW(TAG, "Disconnected (reason %d). Reconnecting...",
+                     d ? d->reason : -1);
 
             esp_wifi_connect();
 
             break;
+        }
 
         default:
             break;
